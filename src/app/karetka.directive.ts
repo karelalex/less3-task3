@@ -10,7 +10,8 @@ export class KaretkaDirective {
 
   @HostListener('focus', ['$event.target']) onFocus(input): void {
     const {value} = input;
-    const index = value?.search('_');
+    if (!value) { return; }
+    const index = value.search('_');
     if (index >= 0) {
       input.setSelectionRange(index, index);
     }
