@@ -8,22 +8,22 @@ export class KaretkaDirective {
   constructor() {
   }
 
-  moveCarriage(e): void {
-    const {value} = e.target;
+  moveCarriage(input): void {
+    const {value} = input;
     if (!value) {
       return;
     }
     const index = value.search('_');
     if (index >= 0) {
-      e.target.setSelectionRange(index, index);
+      input.setSelectionRange(index, index);
     }
   }
 
-  @HostListener('focus', ['$event']) onFocus(e): void {
-    this.moveCarriage(e);
+  @HostListener('focus', ['$event.target']) onFocus(input): void {
+    this.moveCarriage(input);
   }
 
-  @HostListener('click', ['$event']) onClick(e): void {
-    this.moveCarriage(e);
+  @HostListener('click', ['$event.target']) onClick(input): void {
+    this.moveCarriage(input);
   }
 }
